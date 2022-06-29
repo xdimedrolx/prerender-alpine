@@ -2,6 +2,7 @@
 
 const prerender = require('prerender');
 const prMemoryCache = require('prerender-memory-cache');
+const httpHeaders = require('prerender-http-headers');
 
 const server = prerender({
     chromeFlags: ['--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222', '--hide-scrollbars', '--disable-dev-shm-usage'],
@@ -17,5 +18,6 @@ if (memCache === 1) {
 server.use(prerender.blacklist());
 server.use(prerender.httpHeaders());
 server.use(prerender.removeScriptTags());
+server.use(httpHeaders)
 
 server.start();
